@@ -1,17 +1,17 @@
-export function objectHasKeysByPath(path: string[], target: Record<string, any>): boolean {
+export function objectHasKeysByPath(path: string[], target: Record<string, unknown>): boolean {
   let objectHasKeys = true;
-  let targetByKey = target;
+  let targetByKey: Record<string, unknown> = target;
 
   for (let i = 0; i < path.length; i++) {
     const pathKey = path[i];
 
-    if (!targetByKey.hasOwnProperty(pathKey)) {
+    if (!targetByKey[pathKey]) {
       objectHasKeys = false;
 
       break;
     }
 
-    targetByKey = targetByKey[pathKey];
+    targetByKey = targetByKey[pathKey] as Record<string, unknown>;
   }
 
   return objectHasKeys;

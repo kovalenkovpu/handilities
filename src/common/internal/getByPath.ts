@@ -1,5 +1,5 @@
 interface IGetByPath {
-  (path: string | string[], target: Record<string, any>): any;
+  (path: string | string[], target: Record<string, unknown>): unknown;
 }
 
 export const getByPath: IGetByPath = (path, target) => {
@@ -15,7 +15,7 @@ export const getByPath: IGetByPath = (path, target) => {
     const pathCopy = [...path];
     const [currentKey] = pathCopy;
 
-    return getByPath(pathCopy.splice(1), target[currentKey] as Record<string, any>);
+    return getByPath(pathCopy.splice(1), target[currentKey] as Record<string, unknown>);
   } else {
     return target[path];
   }

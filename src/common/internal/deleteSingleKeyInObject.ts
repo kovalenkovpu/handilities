@@ -1,8 +1,8 @@
-export function deleteSingleKeyInObject<T extends Record<string, any>, K extends keyof T>(
+export function deleteSingleKeyInObject<T extends Record<string, unknown>, K extends keyof T>(
   key: K,
   target: T,
 ): Omit<T, K> {
-  const { [key]: toOmit, ...rest } = target;
+  const { [key]: _, ...rest } = target;
 
   return rest;
 }

@@ -1,7 +1,7 @@
 import { getByPath, removeByKey } from "./internal";
 
 export interface IRemoveDeepByKey {
-  (path: string[], target: Record<string, any>): Record<string, any>;
+  (path: string[], target: Record<string, unknown>): Record<string, unknown>;
 }
 
 /**
