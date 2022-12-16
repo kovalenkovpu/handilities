@@ -1,17 +1,13 @@
 # Handlities
 
-> ### Purpose 1: collect often-used functions, that are commonly used and helpful in everyday development
->
-> ### Purpose 2: create own npm library
-
 ---
 
 ## List of utilities
 
 ### Types
 
-- `KeyOf`, `ValueOf`
-- `objectKeys`, `objectValues`
+- `KeyOf`, `ValueOf` shortcuts
+- `objectKeys`, `objectValues` micro utils
 - more to come
 
 ### React
@@ -21,6 +17,8 @@
 
 ### Common
 
+- `removeByKey`
+- `removeDeepByKey`
 - `pluralize` (RU locale first, maybe EN locale)
 - more to come
 
