@@ -23,5 +23,3 @@ export const removeByKey = <T extends Record<string, unknown>>(path: TPath, targ
 
   return deleteSingleKeyInObject(path, target);
 };
-
-const c = removeByKey(["a", "b"], { a: { b: "b", c: "c" } });
