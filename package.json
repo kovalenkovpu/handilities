@@ -2,7 +2,7 @@
   "name": "handilities",
   "version": "0.0.1",
   "description": "Handy utilities for JS, TS, React in browser and server env",
-  "main": "index.js",
+  "main": "lib/",
   "scripts": {
     "build": "rimraf ./lib && npm run lint && npm run test && tsc",
     "test": "jest",
