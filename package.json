@@ -13,6 +13,7 @@
     "lint": "npm run prettier:check && npm run eslint"
   },
   "author": "Pavel Kovalenkov",
+  "keywords": ["utilities", "handy functions", "typescript", "helpers"],
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^29.2.4",
