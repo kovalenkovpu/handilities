@@ -2,7 +2,7 @@
   "name": "handilities",
   "version": "0.0.1",
   "description": "Handy utilities for JS, TS, React in browser and server env",
-  "main": "lib/",
+  "main": "lib",
   "scripts": {
     "build": "rimraf ./lib && npm run lint && npm run test && tsc",
     "test": "jest",
@@ -13,7 +13,12 @@
     "lint": "npm run prettier:check && npm run eslint"
   },
   "author": "Pavel Kovalenkov",
-  "keywords": ["utilities", "handy functions", "typescript", "helpers"],
+  "keywords": [
+    "utilities",
+    "handy functions",
+    "typescript",
+    "helpers"
+  ],
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^29.2.4",
