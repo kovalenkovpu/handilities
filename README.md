@@ -13,6 +13,7 @@
 ### React
 
 - `usePrevious` hook
+- `useDidMount` hook
 - more to come
 
 ### Common
