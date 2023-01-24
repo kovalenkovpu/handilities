@@ -10,7 +10,7 @@
 - `objectKeys`, `objectValues` micro utils
 - more to come
 
-### React
+### React - *in progress*
 
 - `usePrevious` hook
 - `useDidMount` hook
@@ -20,7 +20,7 @@
 
 - `removeByKey`
 - `removeDeepByKey`
-- `pluralize` (RU locale first, maybe EN locale)
+- `pluralize` (RU locale first, maybe EN locale) - *in progress*
 - more to come
 
 ## Platforms
