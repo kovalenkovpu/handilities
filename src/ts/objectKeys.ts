@@ -1,5 +1,7 @@
 import { KeyOf } from "./keyOf";
 
-export const objectKeys = <T extends Record<string, unknown>>(target: T) => {
+const objectKeys = <T extends Record<string, unknown>>(target: T) => {
   return Object.keys(target) as KeyOf<T>[];
 };
+
+export { objectKeys };

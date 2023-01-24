@@ -1,4 +1,4 @@
-export * from "./keyOf";
-export * from "./valueOf";
-export * from "./objectKeys";
-export * from "./objectValues";
+export type { KeyOf } from "./keyOf";
+export type { ValueOf } from "./valueOf";
+export { objectKeys } from "./objectKeys";
+export { objectValues } from "./objectValues";

@@ -1,16 +1,16 @@
 import { deleteSingleKeyInObject } from "./deleteSingleKeyInObject";
 
-export function deleteKeyInObjectByPath<T extends Record<string, unknown>, K extends keyof T>(
+function deleteKeyInObjectByPath<T extends Record<string, unknown>, K extends keyof T>(
   path: [K],
   target: T,
 ): Omit<T, K>;
 
-export function deleteKeyInObjectByPath<R extends Record<string, unknown>>(
+function deleteKeyInObjectByPath<R extends Record<string, unknown>>(
   path: string[],
   target: Record<string, unknown>,
 ): R;
 
-export function deleteKeyInObjectByPath<R extends Record<string, unknown>>(
+function deleteKeyInObjectByPath<R extends Record<string, unknown>>(
   path: string[],
   target: Record<string, unknown>,
 ): typeof target | R {
@@ -31,3 +31,5 @@ export function deleteKeyInObjectByPath<R extends Record<string, unknown>>(
     [key]: deleteKeyInObjectByPath(rest, newTarget),
   };
 }
+
+export { deleteKeyInObjectByPath };
