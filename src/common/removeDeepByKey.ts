@@ -1,6 +1,6 @@
 import { getByPath, removeByKey } from "./internal";
 
-export interface IRemoveDeepByKey {
+interface IRemoveDeepByKey {
   (path: string[], target: Record<string, unknown>): Record<string, unknown>;
 }
 
@@ -11,7 +11,7 @@ export interface IRemoveDeepByKey {
  * @param target object to remove the key-value pair from, e.g. { a: { b: 'some value' } }
  * @returns new object with deleted key-value pair, e.g. { }
  */
-export const removeDeepByKey: IRemoveDeepByKey = (path, target) => {
+const removeDeepByKey: IRemoveDeepByKey = (path, target) => {
   const pathCopy = [...path];
   const result = removeByKey(pathCopy, target);
 
@@ -25,3 +25,6 @@ export const removeDeepByKey: IRemoveDeepByKey = (path, target) => {
 
   return removeDeepByKey(pathCopy, result);
 };
+
+export type { IRemoveDeepByKey };
+export { removeDeepByKey };

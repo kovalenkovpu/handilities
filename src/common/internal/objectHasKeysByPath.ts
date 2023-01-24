@@ -1,4 +1,4 @@
-export function objectHasKeysByPath(path: string[], target: Record<string, unknown>): boolean {
+function objectHasKeysByPath(path: string[], target: Record<string, unknown>): boolean {
   let objectHasKeys = true;
   let targetByKey: Record<string, unknown> = target;
 
@@ -16,3 +16,5 @@ export function objectHasKeysByPath(path: string[], target: Record<string, unkno
 
   return objectHasKeys;
 }
+
+export { objectHasKeysByPath };

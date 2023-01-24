@@ -2,7 +2,7 @@ interface IGetByPath {
   (path: string | string[], target: Record<string, unknown>): unknown;
 }
 
-export const getByPath: IGetByPath = (path, target) => {
+const getByPath: IGetByPath = (path, target) => {
   if (!path.length) {
     return target;
   }
@@ -12,11 +12,12 @@ export const getByPath: IGetByPath = (path, target) => {
   }
 
   if (Array.isArray(path)) {
-    const pathCopy = [...path];
-    const [currentKey] = pathCopy;
+    const [currentKey] = path;
 
-    return getByPath(pathCopy.splice(1), target[currentKey] as Record<string, unknown>);
+    return getByPath(path.splice(1), target[currentKey] as Record<string, unknown>);
   } else {
     return target[path];
   }
 };
+
+export { getByPath };

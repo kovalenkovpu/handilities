@@ -1,4 +1,4 @@
-export function deleteSingleKeyInObject<T extends Record<string, unknown>, K extends keyof T>(
+function deleteSingleKeyInObject<T extends Record<string, unknown>, K extends keyof T>(
   key: K,
   target: T,
 ): Omit<T, K> {
@@ -6,3 +6,5 @@ export function deleteSingleKeyInObject<T extends Record<string, unknown>, K ext
 
   return rest;
 }
+
+export { deleteSingleKeyInObject };
