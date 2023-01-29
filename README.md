@@ -19,7 +19,7 @@ No specific version of nodejs and npm is required, but for the usage as an npm p
     - [TS Utilities](#ts-utils)
       - [KeyOf type](#key-of)
       - [ValueOf type](#value-of)
-      - [objectKeys function](#object-keys)
+      - [objectKeys](#object-keys)
     - [Common Utilities](#common-utils)
       - [removeByKey](#remove-by-key)
       - [removeDeepByKey](#remove-deep-by-key)
@@ -89,10 +89,16 @@ const value3: TValue = 'c'; -> Type '"c"' is not assignable to type 'TValue'.
 #### <a id="object-keys"></a> objectKeys()
 
 ```ts
-objectKeys(targetObject);
+objectKeys(target: Record<string, any>);
 ```
 
 Utility function that returns an array of own enumerable keys of a given object.
+
+#### Options
+
+| Name   | Type     | Default value |
+| ------ | -------- | ------------- |
+| target | `Object` | -             |
 
 Example:
 
@@ -108,7 +114,7 @@ const keys1 = Object.keys(car); -> const keys1: string[]
 const keys2 = objectKeys(car); -> const keys2: ("wheels" | "output" | "name")[]
 ```
 
-### <a id="ts-utils"></a>Common Utilities
+### <a id="common-utils"></a>Common Utilities
 
 #### <a id="remove-by-key"></a> removeByKey()
 
@@ -124,7 +130,7 @@ Returns new object if the `path` was successfully resolved. <br/> Returns `targe
 | Name   | Type               | Default value |
 | ------ | ------------------ | ------------- |
 | path   | `string, string[]` | -             |
-| target | Object             | -             |
+| target | `Object`           | -             |
 
 Examples:
 
@@ -160,7 +166,7 @@ const targetEqualsResult = result === target; -> true
 #### <a id="remove-deep-by-key"></a> removeDeepByKey()
 
 ```ts
-removeDeepByKey(path: string | string[], target: Record<string, any>);
+removeDeepByKey(path: string[], target: Record<string, any>);
 ```
 
 Removes key-value pair in the object by a provided `path`. <br/> Also, if deleted key-value was the only one in an object, removes that empty object and recursively checks previous key-value pair for the same. <br/>
@@ -171,7 +177,7 @@ Returns new object if the `path` was successfully resolved. <br/> Returns `targe
 | Name   | Type       | Default value |
 | ------ | ---------- | ------------- |
 | path   | `string[]` | -             |
-| target | Object     | -             |
+| target | `Object`   | -             |
 
 Examples:
 
