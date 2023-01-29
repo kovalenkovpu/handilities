@@ -1,5 +1,5 @@
-import { removeByKey } from "../../removeByKey";
-import { nestedObject } from "../../__mocks__/nestedObject";
+import { removeByKey } from "../removeByKey";
+import { nestedObject } from "../__mocks__/nestedObject";
 
 describe("removeByKey", () => {
   test.each([

@@ -84,4 +84,8 @@ describe("removeDeepByKey", () => {
   ])("Corner cases: returns correct result when $description", ({ path, result, target }) => {
     expect(removeDeepByKey(path, target)).toEqual(result);
   });
+
+  test("If the path is not resolved, returns the same provided object", () => {
+    expect(removeDeepByKey(["abc"], nestedObject)).toBe(nestedObject);
+  });
 });
