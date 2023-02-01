@@ -1,0 +1,1 @@
+export { findByPrimaryKey } from "./findByPrimaryKey";
