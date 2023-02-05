@@ -1,1 +1,1 @@
-export { findByPrimaryKey } from "./findByPrimaryKey";
+export { initTreeUtils } from "./initTreeUtils";
