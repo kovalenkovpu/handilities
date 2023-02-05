@@ -1,21 +1,21 @@
-interface ITreeItem {
+interface INodeItem {
   id: string;
   value: string;
-  children?: ITreeItem[];
+  children?: INodeItem[];
 }
 
-const nestedItem = {
+const nestedNodeItem: INodeItem = {
   id: "1-1",
   value: "v-1-1",
   children: [],
 };
 
-const nestedItemDeep = {
+const nestedNodeItemDeep: INodeItem = {
   id: "1-2-1",
   value: "v-1-2-1",
 };
 
-const nestedTreeItems: ITreeItem[] = [
+const nestedNodeItems: INodeItem[] = [
   {
     id: "0",
     value: "v-0",
@@ -24,11 +24,11 @@ const nestedTreeItems: ITreeItem[] = [
     id: "1",
     value: "v-1",
     children: [
-      nestedItem,
+      nestedNodeItem,
       {
         id: "1-2",
         value: "v-1-2",
-        children: [nestedItemDeep],
+        children: [nestedNodeItemDeep],
       },
     ],
   },
@@ -38,4 +38,6 @@ const nestedTreeItems: ITreeItem[] = [
   },
 ];
 
-export { nestedTreeItems, nestedItem, nestedItemDeep };
+export type { INodeItem };
+
+export { nestedNodeItems, nestedNodeItem, nestedNodeItemDeep };
