@@ -91,7 +91,7 @@ const value3: TValue = 'c'; -> Type '"c"' is not assignable to type 'TValue'.
 #### <a id="object-keys"></a> objectKeys()
 
 ```ts
-objectKeys(target: Record<string, any>);
+objectKeys(target: Record<string, unknown>);
 ```
 
 Utility function that returns an array of own enumerable keys of a given object.
@@ -121,7 +121,7 @@ const keys2 = objectKeys(car); -> const keys2: ("wheels" | "output" | "name")[]
 #### <a id="remove-by-key"></a> removeByKey()
 
 ```ts
-removeByKey(path: string | string[], target: Record<string, any>);
+removeByKey(path: string | string[], target: Record<string, unknown>);
 ```
 
 Removes key-value pair in the object by a provided `path`. <br/>
@@ -168,7 +168,7 @@ const targetEqualsResult = result === target; -> true
 #### <a id="remove-deep-by-key"></a> removeDeepByKey()
 
 ```ts
-removeDeepByKey(path: string[], target: Record<string, any>);
+removeDeepByKey(path: string[], target: Record<string, unknown>);
 ```
 
 Removes key-value pair in the object by a provided `path`. <br/> Also, if deleted key-value was the only one in an object, removes that empty object and recursively checks previous key-value pair for the same. <br/>
@@ -227,6 +227,12 @@ Might be useful if you want to create a set of handy functions at one place, bin
 | ----------- | ----------------------- | -------- | ------------- |
 | initOptions | `IInitListUtilsOptions` | +        | -             |
 
+##### `IInitListUtilsOptions`
+| Property    | Type     | Default value |
+| ----------- | -------- | ------------- |
+| primaryKey  | `string` | -             |
+| childrenKey | `string` | -             |
+
 Examples:
 
 ```ts
@@ -256,6 +262,14 @@ listUtils.findByPrimaryKey(list, '1-1'); -> { id: '1-1', value: 'v-1-1' }
 For more exhaustive details on the `findByPrimaryKey()` interface please refer to the corresponding section of this document.
 
 #### <a id="find-by-primary-key"></a> findByPrimaryKey()
+
+```ts
+findByPrimaryKey(primaryKey: string, childrenKey: string)(
+  items: Record<string, unknown>,
+  value: any,
+  callback?: (node: Record<string, unknown>) => void,
+);
+```
 
 This function is a part of the above described [List Utils](#list-utils). It is returned as a result of invoking the `initListUtils`.
 
