@@ -23,6 +23,8 @@ No specific version of nodejs and npm is required, but for the usage as an npm p
     - [Common Utilities](#common-utils)
       - [removeByKey](#remove-by-key)
       - [removeDeepByKey](#remove-deep-by-key)
+    - [List Utils](#list-utils)
+      - [findByPrimaryKey](#find-by-primary-key)
   - [Contributing](#contributing)
   - [Versioning](#versioning)
   - [Authors](#authors)
@@ -208,6 +210,109 @@ const target = {
 
 const result = removeDeepByKey(['c'], target); -> { a: 'a', b: 'B' }
 const targetEqualsResult = result === target; -> true
+```
+
+### <a id="list-utils"></a>List Utils
+
+A common function for initializing a bag of useful traversing utilities for going over, finding and mutating nodes within some nested objects structures.
+For now, contains following methods:
+
+- [`findByPrimaryKey()`](#find-by-primary-key) - finds a node by its primary identifier and invokes provided callback to mutate the node.
+
+Might be useful if you want to create a set of handy functions at one place, binding primary and secondary keys of your list (please refer to the example below).
+
+#### Options
+
+| Name        | Type                    | Required | Default value |
+| ----------- | ----------------------- | -------- | ------------- |
+| initOptions | `IInitListUtilsOptions` | +        | -             |
+
+Examples:
+
+```ts
+const list = [
+  {
+    id: '0', // <- primary key
+    value: 'v-0',
+  },
+  {
+    id: '1',
+    value: 'v-1',
+    children: [ // <- children key
+      {
+        id: '1-1',
+        value: 'v-1-1',
+      },
+    ],
+  },
+];
+
+const listUtils = initListUtils({ primaryKey: 'id', childrenKey: 'children' });
+
+// Going through the list and finds a node with id === '1-1', returns a link to the found node
+listUtils.findByPrimaryKey(list, '1-1'); -> { id: '1-1', value: 'v-1-1' }
+```
+
+For more exhaustive details on the `findByPrimaryKey()` interface please refer to the corresponding section of this document.
+
+#### <a id="find-by-primary-key"></a> findByPrimaryKey()
+
+This function is a part of the above described [List Utils](#list-utils). It is returned as a result of invoking the `initListUtils`.
+
+Purpose: the utility function that iterates over the list of a nested objects and searches for a particular node by its `id`. Also, calls provided callback on a found node (if any).
+
+#### Options
+
+| Name        | Type     | Required | Default value |
+| ----------- | -------- | -------- | ------------- |
+| primaryKey  | `string` | +        | -             |
+| childrenKey | `string` | +        | -             |
+
+Returns another function with the following arguments interface:
+
+| Name     | Type                                    | Required | Default value |
+| -------- | --------------------------------------- | -------- | ------------- |
+| items    | `(T extends Record<string, unknown>)[]` | +        | -             |
+| value    | `T[primaryKey]`                         | +        | -             |
+| callback | `(node: T) => void`                     | -        | -             |
+
+Examples:
+
+```ts
+interface INodeItem {
+  id: string;
+  value: string;
+  children?: INodeItem[];
+}
+
+const list: INodeItem[] = [
+  {
+    id: '0', // <- primary key
+    value: 'v-0',
+  },
+  {
+    id: '1',
+    value: 'v-1',
+    children: [ // <- children key
+      {
+        id: '1-1',
+        value: 'v-1-1',
+      },
+    ],
+  },
+];
+
+// Going through the list and finds a node with id === '1-1', returns a link to the found node
+findByPrimaryKey('id', 'children')(list, '1-1'); -> { id: '1-1', value: 'v-1-1' }
+
+const mutateCallback = (node: INodeItem) => node.value = 'mutated';
+
+// Going through the list and finds a node with id === '1-1', calls mutateCallback on a found node, returns a link to the node
+findByPrimaryKey('id', 'children')(
+  list,
+  '1-1',
+  mutateCallback,
+); -> { id: '1-1', value: 'mutated' }
 ```
 
 ## Contributing

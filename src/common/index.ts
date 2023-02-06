@@ -4,4 +4,5 @@ export type { IRemoveDeepByKey } from "./removeDeepByKey";
 export { removeByKey } from "./removeByKey";
 export type { IRemoveByKey } from "./removeByKey";
 
-export { initListUtils } from "./list-utils";
+export { initListUtils, findByPrimaryKey } from "./list-utils";
+export type { IInitListUtilsOptions, IFindByPrimaryKeyMutation } from "./list-utils";
