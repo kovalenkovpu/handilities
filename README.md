@@ -23,6 +23,7 @@ No specific version of nodejs and npm is required, but for the usage as an npm p
     - [Common Utilities](#common-utils)
       - [removeByKey](#remove-by-key)
       - [removeDeepByKey](#remove-deep-by-key)
+      - [beautifyNumber](#beautify-number)
     - [List Utils](#list-utils)
       - [findByPrimaryKey](#find-by-primary-key)
   - [Contributing](#contributing)
@@ -212,6 +213,42 @@ const result = removeDeepByKey(['c'], target); -> { a: 'a', b: 'B' }
 const targetEqualsResult = result === target; -> true
 ```
 
+#### <a id="beautify-number"></a> beautifyNumber()
+
+```ts
+beautifyNumber(value: number, options: IBeautifyNumberOptions);
+```
+
+Produces a formatted string that was created out of the number provided as an input of the function.
+Formatting rules:
+
+- splits a whole part of a number by thousands
+- adds a `joint` symbol between thousands
+- adds a `delimiter` symbol between a whole and a floating part
+
+#### Options
+
+| Name    | Type                     | Required | Default value                    |
+| ------- | ------------------------ | -------- | -------------------------------- |
+| value   | `number`                 | +        | -                                |
+| options | `IBeautifyNumberOptions` | -        | `{ delimiter: '.', joint: ' ' }` |
+
+Examples:
+
+```ts
+// Whole numbers
+const result = beautifyNumber(1000); -> '1 000'
+const result = beautifyNumber(1_000); -> '1 000'
+
+// With floating point
+const result = beautifyNumber(1000.123); -> '1 000.123'
+const result = beautifyNumber(1000.123, { delimiter: ',' }); -> '1 000,123'
+const result = beautifyNumber(1000.123, { delimiter: ',', joint: '_' }); -> '1_000,123'
+
+// Throws error
+const result = beautifyNumber(1000.123, { delimiter: ',', joint: ',' }); -> [Error: Please provide different delimiter and joint values]
+```
+
 ### <a id="list-utils"></a>List Utils
 
 A common function for initializing a bag of useful traversing utilities for going over, finding and mutating nodes within some nested objects structures.
@@ -228,6 +265,7 @@ Might be useful if you want to create a set of handy functions at one place, bin
 | initOptions | `IInitListUtilsOptions` | +        | -             |
 
 ##### `IInitListUtilsOptions`
+
 | Property    | Type     | Default value |
 | ----------- | -------- | ------------- |
 | primaryKey  | `string` | -             |
